@@ -3,6 +3,7 @@ import form from "../controller/form";
 import category from "../controller/category";
 import products from "../controller/products";
 import blog from "../controller/blog";
+import top_product from "../controller/top_product";
 const router=Router()
 
 // form
@@ -33,5 +34,11 @@ router.get("/products/:id",products.GetId);
 router.post("/products",products.Post);
 router.put("/products/:id",products.Put);
 router.delete("/products/:id",products.Delete);
+// top
+router.get("/top",top_product.Get);
+router.get("/top/:id",top_product.GetId);
+router.post("/top",top_product.Post);
+router.put("/top/:id",top_product.Put);
+router.delete("/top/:id",products.Delete);
 
 export default router;

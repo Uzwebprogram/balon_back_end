@@ -2,18 +2,18 @@ import { Request, Response } from 'express';
 import { AppDataSource } from '../data-source';
 import { ProductsEntity } from '../entities/products';
 
-class ProductsController {
+class TopProductsController {
     public async Get(req: Request, res: Response): Promise<void> {
-        res.json(await AppDataSource.getRepository(ProductsEntity ).find());
+        res.json(await AppDataSource.getRepository(ProductsEntity ).find({
+            order: {
+                id : 'DESC'
+            },
+      }));
     }
 
     public async GetId(req: Request, res: Response): Promise<void> {
         const { id } = req.params
-
-        res.json(await AppDataSource.getRepository(ProductsEntity ).find({
-            relations:{
-                category:true
-            },where: { id: +id }}));
+        res.json(await AppDataSource.getRepository(ProductsEntity ).find({where: { id: +id }}));
     }
 
     public async Post(req: Request, res: Response) {
@@ -71,4 +71,4 @@ class ProductsController {
     }
 }
 
-export default new ProductsController();
+export default new TopProductsController();
