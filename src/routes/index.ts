@@ -2,7 +2,7 @@ import { Router } from "express";
 import form from "../controller/form";
 import category from "../controller/category";
 import products from "../controller/products";
-import blog from "../controller/blog";
+import news from "../controller/news";
 import top_product from "../controller/top_product";
 const router=Router()
 
@@ -13,12 +13,12 @@ router.post("/form",form.Post);
 router.put("/form/:id",form.Put);
 router.delete("/form/:id",form.Delete);
 
-// blog
-router.get("/blog",blog.Get);
-router.get("/blog/:id",blog.GetId);
-router.post("/blog",blog.Post);
-router.put("/blog/:id",blog.Put);
-router.delete("/blog/:id",blog.Delete);
+// news
+router.get("/news",news.Get);
+router.get("/news/:id",news.GetId);
+router.post("/news",news.Post);
+router.put("/news/:id",news.Put);
+router.delete("/news/:id",news.Delete);
 
 
 // category
@@ -35,10 +35,10 @@ router.post("/products",products.Post);
 router.put("/products/:id",products.Put);
 router.delete("/products/:id",products.Delete);
 // top
-router.get("/top",top_product.Get);
-router.get("/top/:id",top_product.GetId);
-router.post("/top",top_product.Post);
-router.put("/top/:id",top_product.Put);
-router.delete("/top/:id",products.Delete);
+router.get("/news-product",top_product.Get);
+router.get("/news-product/:id",top_product.GetId);
+router.post("/news-product",top_product.Post);
+router.put("/news-product/:id",top_product.Put);
+router.delete("/news-product/:id",products.Delete);
 
 export default router;

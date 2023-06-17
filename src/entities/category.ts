@@ -19,7 +19,10 @@ export class CategoryEntity {
     @IsString()
     title_ru: string
 
-
+    @Column({ type: "varchar", length: 1000 })
+    @IsString()
+    image: string
+    
     @CreateDateColumn({ type: "timestamp" })
     createdAt: Date;
 

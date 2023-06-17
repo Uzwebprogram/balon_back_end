@@ -3,8 +3,8 @@ import { Entity, PrimaryGeneratedColumn, Column,CreateDateColumn,UpdateDateColum
 import { ProductsEntity } from "./products";
 
 
-@Entity({ name: "blog" })
-export class BlogEntity {
+@Entity({ name: "news" })
+export class NewsEntity {
     @PrimaryGeneratedColumn()
     id: number
     @Column({ type: "varchar", length: 1000 })
@@ -23,7 +23,17 @@ export class BlogEntity {
     @IsString()
     title_ru: string
 
+    @Column({ type: "varchar", length: 2000 })
+    @IsString()
+    description_uz: string
 
+    @Column({ type: "varchar", length: 2000 })
+    @IsString()
+    description_en: string
+
+    @Column({ type: "varchar", length: 2000 })
+    @IsString()
+    description_ru: string
     @CreateDateColumn({ type: "timestamp" })
     createdAt: Date;
 

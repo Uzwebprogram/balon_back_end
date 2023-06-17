@@ -1,22 +1,22 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../data-source';
-import { BlogEntity } from '../entities/blog';
+import { NewsEntity} from '../entities/news';
 
 class BlogController {
     public async Get(req: Request, res: Response): Promise<void> {
-        res.json(await AppDataSource.getRepository(BlogEntity ).find());
+        res.json(await AppDataSource.getRepository(NewsEntity).find());
     }
 
     public async GetId(req: Request, res: Response): Promise<void> {
         const { id } = req.params
-        res.json(await AppDataSource.getRepository(BlogEntity ).find({where: { id: +id }}));
+        res.json(await AppDataSource.getRepository(NewsEntity).find({where: { id: +id }}));
     }
 
     public async Post(req: Request, res: Response) {
         try {
-            const { title_uz,title_ru , title_en , link } = req.body
+            const { title_uz,title_ru , title_en , description_uz,description_ru , description_en , link } = req.body
 
-            const category = await AppDataSource.getRepository(BlogEntity ).createQueryBuilder().insert().into(BlogEntity ).values({ title_uz,title_ru , title_en , link }).returning("*").execute()
+            const category = await AppDataSource.getRepository(NewsEntity).createQueryBuilder().insert().into(NewsEntity).values({ title_uz,title_ru , title_en , description_uz,description_ru , description_en , link }).returning("*").execute()
 
             res.json({
                 status: 201,
@@ -31,11 +31,11 @@ class BlogController {
 
     public async Put(req: Request, res: Response) {
         try {
-            const { title_uz,title_ru , title_en , link  } = req.body
+            const { title_uz,title_ru , title_en , description_uz,description_ru , description_en , link  } = req.body
             const { id } = req.params
 
-            const category = await AppDataSource.getRepository(BlogEntity ).createQueryBuilder().update(BlogEntity )
-                .set({ title_uz,title_ru , title_en , link  })
+            const category = await AppDataSource.getRepository(NewsEntity).createQueryBuilder().update(NewsEntity)
+                .set({ title_uz,title_ru , title_en , description_uz,description_ru , description_en , link  })
                 .where({ id })
                 .returning("*")
                 .execute()
@@ -54,7 +54,7 @@ class BlogController {
         try {
             const { id } = req.params
 
-            const category = await AppDataSource.getRepository(BlogEntity ).createQueryBuilder().delete().from(BlogEntity ).where({ id }).returning("*").execute()
+            const category = await AppDataSource.getRepository(NewsEntity).createQueryBuilder().delete().from(NewsEntity).where({ id }).returning("*").execute()
 
             res.json({
                 status: 200,
